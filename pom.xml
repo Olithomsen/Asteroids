@@ -20,6 +20,9 @@
         <module>Collision</module>
         <module>Player</module>
         <module>Enemy</module>
+        <module>CommonPlayer</module>
+        <module>CommonWeapon</module>
+        <module>Weapon</module>
     </modules>
     <properties>
         <java>java</java>

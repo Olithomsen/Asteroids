@@ -3,10 +3,11 @@ module Core {
     requires javafx.graphics;
     requires javafx.controls;
     requires spring.context;
+    requires jdk.compiler;
 
-    //uses services.dk.sdu.mmmi.cbse.IGamePluginService;
-    //uses services.dk.sdu.mmmi.cbse.IEntityProcessingService;
-    //uses services.dk.sdu.mmmi.cbse.IPostEntityProcessingService;
+    uses dk.sdu.mmmi.cbse.common.services.IGamePluginService;
+    uses dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+    uses dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
     exports dk.sdu.mmmi.cbse.main;
 }

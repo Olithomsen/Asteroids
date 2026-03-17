@@ -1,8 +1,12 @@
-﻿import dk.sdu.mmmi.cbse.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.services.IGamePluginService;
+﻿import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 
 module Player {
     requires Common;
-    provides IGamePluginService with dk.sdu.cbse.playersystem.PlayerPlugin;
-    provides IEntityProcessingService with dk.sdu.cbse.playersystem.PlayerControlSystem;
+    requires CommonPlayer;
+    requires CommonWeapon;
+    requires java.desktop;
+    requires javafx.graphics;
+    provides dk.sdu.mmmi.cbse.common.services.IGamePluginService with dk.sdu.mmmi.cbse.Playersystem.PlayerPlugin;
+    provides dk.sdu.mmmi.cbse.common.services.IEntityProcessingService with dk.sdu.mmmi.cbse.Playersystem.PlayerControlSystem;
 }
