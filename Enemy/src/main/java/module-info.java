@@ -1,2 +1,2 @@
-﻿module Enemy {
+module Enemy {
 }

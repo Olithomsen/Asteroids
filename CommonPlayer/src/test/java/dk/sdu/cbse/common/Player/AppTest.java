@@ -1,4 +1,4 @@
-package dk.sdu.cbse;
+package dk.sdu.cbse.common.Player;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -7,8 +7,8 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
+public class AppTest
+        extends TestCase
 {
     /**
      * Create the test case

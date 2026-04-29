@@ -1,13 +1,13 @@
 package dk.sdu.mmmi.cbse.Playersystem;
 
+import dk.sdu.cbse.common.weapon.Weapon;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.GameKeys;
 import dk.sdu.mmmi.cbse.common.data.World;
-import dk.sdu.cbse.Player.Player;
+import dk.sdu.cbse.common.Player.Player;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-//import dk.sdu.mmmi.cbse.common.weapon.Weapon;
-//import dk.sdu.mmmi.cbse.common.weapon.WeaponSPI;
+import dk.sdu.cbse.common.weapon.WeaponSPI;
 
 import java.util.Collection;
 import java.util.ServiceLoader;

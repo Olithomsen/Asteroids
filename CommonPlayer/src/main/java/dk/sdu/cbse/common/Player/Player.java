@@ -1,7 +1,7 @@
-package dk.sdu.cbse.Player;
+package dk.sdu.cbse.common.Player;
 
 import dk.sdu.mmmi.cbse.common.data.Entity;
-//import dk.sdu.cbse.Weapon;
+import dk.sdu.cbse.common.weapon.Weapon;
 
 public class Player extends Entity {
     private int turnSpeed = 150;

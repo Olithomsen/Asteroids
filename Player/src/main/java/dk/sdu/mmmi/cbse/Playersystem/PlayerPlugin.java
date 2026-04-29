@@ -4,14 +4,9 @@ package dk.sdu.mmmi.cbse.Playersystem;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
-import dk.sdu.cbse.Player.Player;
+import dk.sdu.cbse.common.Player.Player;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import javafx.scene.paint.Color;
-
-import java.util.Collection;
-import java.util.ServiceLoader;
-
-import static java.util.stream.Collectors.toList;
 
 public class PlayerPlugin implements IGamePluginService {
 
