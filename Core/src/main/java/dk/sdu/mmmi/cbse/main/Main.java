@@ -1,6 +1,7 @@
 package dk.sdu.mmmi.cbse.main;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

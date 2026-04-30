@@ -9,6 +9,7 @@ public class GameData {
 
     private double deltaTime;
 
+    private int score = 0;
 
     public GameKeys getKeys() {
         return keys;
@@ -43,4 +44,11 @@ public class GameData {
         return deltaTime;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

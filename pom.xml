@@ -23,6 +23,7 @@
         <module>CommonPlayer</module>
         <module>CommonWeapon</module>
         <module>Weapon</module>
+        <module>CommonEnemy</module>
     </modules>
     <properties>
         <java>java</java>
@@ -109,6 +110,7 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version> 3.5.0</version>
+                <inherited>false</inherited>
                 <executions>
                     <execution>
                         <goals>

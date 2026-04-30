@@ -1,6 +1,10 @@
-//import dk.sdu.cbse.common.services.IPostEntityProcessingService;
+import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
 module Collision {
     requires Common;
-    //provides IPostEntityProcessingService with dk.sdu.cbse.collisionsystem.CollisionDetector;
+    requires CommonAsteroids;
+    requires CommonBullet;
+    requires CommonEnemy;
+    requires CommonPlayer;
+    provides IPostEntityProcessingService with dk.sdu.mmmi.cbse.collisionsystem.CollisionDetector;
 }

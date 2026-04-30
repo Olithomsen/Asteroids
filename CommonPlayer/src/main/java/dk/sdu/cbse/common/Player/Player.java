@@ -4,8 +4,8 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.cbse.common.weapon.Weapon;
 
 public class Player extends Entity {
-    private int turnSpeed = 150;
-    private int moveSpeed = 200;
+    private int turnSpeed = 250;
+    private int moveSpeed = 1000;
 
     private Weapon weapon;
 

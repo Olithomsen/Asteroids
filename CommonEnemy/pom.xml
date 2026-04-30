@@ -7,10 +7,10 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>Collision</artifactId>
+    <artifactId>CommonEnemy</artifactId>
     <packaging>jar</packaging>
 
-    <name>Collision</name>
+    <name>CommonEnemy</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -25,31 +25,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>dk.sdu.mmmi.cbse</groupId>
             <artifactId>Common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse</groupId>
-            <artifactId>CommonAsteroids</artifactId>
             <version>1.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>dk.sdu.cbse</groupId>
-            <artifactId>CommonBullet</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse</groupId>
-            <artifactId>CommonPlayer</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dk.sdu.cbse</groupId>
-            <artifactId>CommonEnemy</artifactId>
+            <artifactId>CommonWeapon</artifactId>
             <version>1.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

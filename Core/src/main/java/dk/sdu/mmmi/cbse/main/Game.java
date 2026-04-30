@@ -50,11 +50,11 @@ class Game {
         for (IGamePluginService iGamePlugin : getGamePluginServices()) {
             iGamePlugin.start(gameData, world);
         }
-
         window.setScene(scene);
         window.setTitle("ASTEROIDS");
         window.show();
     }
+
 
     public void render() {
         new AnimationTimer() {
@@ -69,15 +69,28 @@ class Game {
 
     private void handleKeyInput(KeyCode code, boolean isPressed) {
         switch (code) {
-            case LEFT -> gameData.getKeys().setKey(GameKeys.LEFT, isPressed);
-            case RIGHT -> gameData.getKeys().setKey(GameKeys.RIGHT, isPressed);
-            case UP -> gameData.getKeys().setKey(GameKeys.UP, isPressed);
-            case SPACE -> gameData.getKeys().setKey(GameKeys.SPACE, isPressed);
-            default -> {}
+            case LEFT:
+            case A:
+                gameData.getKeys().setKey(GameKeys.LEFT, isPressed);
+                break;
+            case RIGHT:
+            case D:
+                gameData.getKeys().setKey(GameKeys.RIGHT, isPressed);
+                break;
+            case UP:
+            case W:
+                gameData.getKeys().setKey(GameKeys.UP, isPressed);
+                break;
+            case SPACE:
+                gameData.getKeys().setKey(GameKeys.SPACE, isPressed);
+                break;
+            default: {}
         }
     }
 
     private void update() {
+        gameData.setDeltaTime();
+
         for (IEntityProcessingService entityProcessorService : getEntityProcessingServices()) {
             entityProcessorService.process(gameData, world);
         }
