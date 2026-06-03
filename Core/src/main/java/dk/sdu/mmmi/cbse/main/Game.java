@@ -10,11 +10,14 @@ import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -41,6 +44,13 @@ class Game {
     public void start(Stage window) {
         Text text = new Text(10, 20, "Destroyed asteroids: 0");
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
+
+        // Set black background
+        gameWindow.setStyle("-fx-background-color: black;");
+
+        // Add stars
+        addStars();
+
         gameWindow.getChildren().add(text);
 
         Scene scene = new Scene(gameWindow);
@@ -65,6 +75,21 @@ class Game {
                 gameData.getKeys().update();
             }
         }.start();
+    }
+
+    private void addStars() {
+        Random rand = new Random();
+        int starCount = 100;
+
+        for (int i = 0; i < starCount; i++) {
+            double x = rand.nextDouble() * gameData.getDisplayWidth();
+            double y = rand.nextDouble() * gameData.getDisplayHeight();
+            double radius = 0.5 + rand.nextDouble(); // Small circles 0.5-1.5 units
+
+            Circle star = new Circle(x, y, radius);
+            star.setFill(Color.WHITE);
+            gameWindow.getChildren().add(star);
+        }
     }
 
     private void handleKeyInput(KeyCode code, boolean isPressed) {
@@ -114,6 +139,8 @@ class Game {
             // computeIfAbsent natively handles null checking and map insertion
             Polygon polygon = polygons.computeIfAbsent(entity, e -> {
                 Polygon p = new Polygon(e.getPolygonCoordinates());
+                p.setStroke(e.getColor());
+                p.setFill(e.getColor());
                 gameWindow.getChildren().add(p);
                 return p;
             });

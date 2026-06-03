@@ -5,14 +5,10 @@ import dk.sdu.mmmi.cbse.common.asteroids.Asteroid;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
-import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import java.util.Random;
+import javafx.scene.paint.Color;
 
-/**
- *
- * @author corfixen
- */
 public class AsteroidPlugin implements IGamePluginService {
 
     @Override
@@ -23,13 +19,12 @@ public class AsteroidPlugin implements IGamePluginService {
 
     @Override
     public void stop(GameData gameData, World world) {
-        // Remove entities
-        for (Entity asteroid : world.getEntities(Asteroid.class)) {
+               for (Entity asteroid : world.getEntities(Asteroid.class)) {
             world.removeEntity(asteroid);
         }
     }
 
-    public Entity createAsteroid(GameData gameData) {
+    public static Entity createAsteroid(GameData gameData) {
         Entity asteroid = new Asteroid();
         Random rnd = new Random();
         int size = rnd.nextInt(5, 10);
@@ -37,7 +32,7 @@ public class AsteroidPlugin implements IGamePluginService {
         asteroid.setX(0);
         asteroid.setY(0);
         asteroid.setRadius(size);
-        // Randomly rotating asteroids.
+        asteroid.setColor(Color.GREY);
         asteroid.setRotation(rnd.nextInt(360));
         asteroid.setHealth(3);
         asteroid.setMoveSpeed(100);

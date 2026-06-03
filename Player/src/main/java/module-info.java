@@ -6,6 +6,8 @@ module Player {
     requires javafx.graphics;
     requires CommonBullet;
 
+    exports dk.sdu.mmmi.cbse.Playersystem;
+
     uses dk.sdu.mmmi.cbse.common.bullet.BulletSPI;
     uses dk.sdu.cbse.common.weapon.WeaponSPI;
 

@@ -21,7 +21,6 @@ public class CollisionDetector implements IPostEntityProcessingService {
         for (Entity entity1 : world.getEntities()) {
             for (Entity entity2 : world.getEntities()) {
 
-                // if the two entities are identical, skip the iteration
                 if (entity1.getID().equals(entity2.getID())) {
                     continue;
                 }
@@ -29,20 +28,19 @@ public class CollisionDetector implements IPostEntityProcessingService {
                 // CollisionDetection
                 if (collides(entity1, entity2)) {
 
-                    // As per Lab requirement, remove player if asteroid collides with player.
                     // Asteroid collisions.
                     if (entity1 instanceof Asteroid) {
                         if (entity2 instanceof Player) {
-                            entity2.setHealth(0); // Player removed in PlayerControlSystem.
-                            return; // Exit loop, player is dead and game should end.
+                            entity2.setHealth(0);
+                            return;
                         }
                     }
 
                     // Enemy collisions.
                     if (entity1 instanceof Enemy) {
                         if (entity2 instanceof Player) {
-                            entity2.setHealth(0); // Player removed in PlayerControlSystem.
-                            return; // Exit loop, player is dead and game should end.
+                            entity2.setHealth(0);
+                            return;
                         }
                     }
 
@@ -50,18 +48,18 @@ public class CollisionDetector implements IPostEntityProcessingService {
                     if (entity1 instanceof Bullet) {
                         if (((Bullet) entity1).getShooter() instanceof Player) {
                             if (entity2 instanceof Asteroid) {
-                                entity2.setHealth(entity2.getHealth() - 1); // Asteroid handled in AsteroidControlSystem.
+                                entity2.setHealth(entity2.getHealth() - 1);
                                 ((Asteroid) entity2).setHit(true);
                             }
 
                             if (entity2 instanceof Enemy) {
-                                entity2.setHealth(entity2.getHealth() - 1); // Enemy handled in EnemyControlSystem.
+                                entity2.setHealth(entity2.getHealth() - 1);
                             }
                         }
 
                         if (((Bullet) entity1).getShooter() instanceof Enemy) {
                             if (entity2 instanceof Player) {
-                                entity2.setHealth(entity2.getHealth() - 1); // Player handled in PlayerControlSystem.
+                                entity2.setHealth(entity2.getHealth() - 1);
                             }
                         }
 

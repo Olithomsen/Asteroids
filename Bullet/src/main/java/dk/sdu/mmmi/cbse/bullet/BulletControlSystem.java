@@ -7,8 +7,13 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import javafx.scene.paint.Color;
+import java.util.ServiceLoader;
+
 
 public class BulletControlSystem implements IEntityProcessingService, BulletSPI {
+    private final ServiceLoader<BulletSPI> bulletLoader = ServiceLoader.load(BulletSPI.class);
+
 
     @Override
     public void process(GameData gameData, World world) {
@@ -19,19 +24,17 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
             bullet.setX(bullet.getX() + changeX * bullet.getMoveSpeed() * gameData.getDeltaTime());
             bullet.setY(bullet.getY() + changeY * bullet.getMoveSpeed() * gameData.getDeltaTime());
 
-            // Remove bullet if it goes out of bounds.
             if (bullet.getX() >= gameData.getDisplayWidth() || bullet.getX() <= 0 || bullet.getY() >= gameData.getDisplayHeight() || bullet.getY() <= 0) {
                 world.removeEntity(bullet);
             }
         }
-
-
     }
 
     @Override
     public Entity createBullet(Entity shooter, GameData gameData) {
         Entity bullet = new Bullet(shooter);
         bullet.setPolygonCoordinates(1, -1, 1, 1, -1, 1, -1, -1);
+        bullet.setColor(Color.GREEN);
         double changeX = Math.cos(Math.toRadians(shooter.getRotation()));
         double changeY = Math.sin(Math.toRadians(shooter.getRotation()));
         bullet.setX(shooter.getX() + changeX * 10);

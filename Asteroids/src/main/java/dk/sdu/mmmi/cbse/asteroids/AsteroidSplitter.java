@@ -5,16 +5,12 @@ import dk.sdu.mmmi.cbse.common.asteroids.Asteroid;
 import dk.sdu.mmmi.cbse.common.asteroids.IAsteroidSplitter;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.World;
+import javafx.scene.paint.Color;
 
-/**
- *
- * @author corfixen
- */
 public class AsteroidSplitter implements IAsteroidSplitter {
 
     @Override
     public void createSplitAsteroid(Entity e, World world) {
-        System.out.println("Splitting.");
         world.addEntity(createFragment(e.getRotation() + 35, e.getRadius(), e.getHealth(), e.getX(), e.getY()));
         world.addEntity(createFragment(e.getRotation() - 35, e.getRadius(), e.getHealth(), e.getX(), e.getY()));
 
@@ -27,7 +23,7 @@ public class AsteroidSplitter implements IAsteroidSplitter {
         asteroid.setX(x);
         asteroid.setY(y);
         asteroid.setRadius(size-1);
-        // Randomly rotating asteroids.
+        asteroid.setColor(Color.GREY);
         asteroid.setRotation(v);
         asteroid.setHealth(health);
         asteroid.setMoveSpeed(100);

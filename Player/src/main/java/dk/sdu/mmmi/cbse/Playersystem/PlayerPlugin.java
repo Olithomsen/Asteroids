@@ -8,20 +8,14 @@ import dk.sdu.cbse.common.Player.Player;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import javafx.scene.paint.Color;
 
-import static java.awt.Color.white;
 
 
 public class PlayerPlugin implements IGamePluginService {
 
     private Entity player;
 
-    public PlayerPlugin() {
-    }
-
     @Override
     public void start(GameData gameData, World world) {
-
-        // Add entities to the world
         player = createPlayerShip(gameData);
         world.addEntity(player);
     }
@@ -29,8 +23,8 @@ public class PlayerPlugin implements IGamePluginService {
     private Entity createPlayerShip(GameData gameData) {
         Entity playerShip = new Player();
         playerShip.setPolygonCoordinates(-5,-5,10,0,-5,5);
-        playerShip.setX(gameData.getDisplayWidth()/2);
-        playerShip.setY(gameData.getDisplayHeight()/2);
+        playerShip.setX(gameData.getDisplayWidth()/2.0);
+        playerShip.setY(gameData.getDisplayHeight()/2.0);
         playerShip.setRadius(10);
         playerShip.setHealth(3);
         playerShip.setColor(Color.BLUE);
@@ -41,10 +35,6 @@ public class PlayerPlugin implements IGamePluginService {
 
     @Override
     public void stop(GameData gameData, World world) {
-        // Remove entities
         world.removeEntity(player);
     }
-
-
-
 }

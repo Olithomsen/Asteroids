@@ -16,6 +16,7 @@ import static java.util.stream.Collectors.toList;
 
 
 public class PlayerControlSystem implements IEntityProcessingService {
+    private final ServiceLoader<WeaponSPI> weaponLoader = ServiceLoader.load(WeaponSPI.class);
 
 
 
@@ -45,17 +46,14 @@ public class PlayerControlSystem implements IEntityProcessingService {
                 if (player.getWeapon() != null) {
                     player.getWeapon().setIsShooting(true);
                 } else {
-                    getWeaponSPIs().stream().findFirst().ifPresent(
-                            spi -> {
-                                System.out.println("Creating weapon.");
-                                Weapon weapon = spi.createWeapon(player);
-                                weapon.setFireRate(0.25);
-                                world.addEntity(weapon);
-                                player.setWeapon(weapon);
-                                player.getWeapon().setFireCooldown(1);
-                                player.getWeapon().setIsShooting(true);
-                            }
-                    );
+                    weaponLoader.stream().map(ServiceLoader.Provider::get).findFirst().ifPresent(spi -> {
+                        Weapon weapon = spi.createWeapon(player);
+                        weapon.setFireRate(0.25);
+                        world.addEntity(weapon);
+                        player.setWeapon(weapon);
+                        player.getWeapon().setFireCooldown(1);
+                        player.getWeapon().setIsShooting(true);
+                    });
                 }
             }
 
@@ -77,10 +75,5 @@ public class PlayerControlSystem implements IEntityProcessingService {
 
 
         }
-    }
-
-
-    private Collection<? extends WeaponSPI> getWeaponSPIs() {
-        return ServiceLoader.load(WeaponSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
     }
 }

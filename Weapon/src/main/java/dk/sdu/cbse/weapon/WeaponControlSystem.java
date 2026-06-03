@@ -14,7 +14,7 @@ import java.util.ServiceLoader;
 import static java.util.stream.Collectors.toList;
 
 public class WeaponControlSystem implements IEntityProcessingService, WeaponSPI {
-
+    private final ServiceLoader<BulletSPI> bulletLoader = ServiceLoader.load(BulletSPI.class);
     @Override
     public void process(GameData gameData, World world) {
         for (Entity entity : world.getEntities(Weapon.class)) {
@@ -24,23 +24,14 @@ public class WeaponControlSystem implements IEntityProcessingService, WeaponSPI 
 
             if (weapon.canShoot()) {
                 if (weapon.getIsShooting()) {
-                    getBulletSPIs().stream().findFirst().ifPresent(
-                            spi -> {
-                                world.addEntity(spi.createBullet(weapon.getOwner(), gameData));
-                            }
-                    );
+                    bulletLoader.stream().map(ServiceLoader.Provider::get).findFirst().ifPresent(
+                            spi -> world.addEntity(spi.createBullet(weapon.getOwner(), gameData)));
                     weapon.setFireCooldown(0);
                 }
             }
-
             weapon.setIsShooting(false);
         }
     }
-
-    private Collection<? extends BulletSPI> getBulletSPIs() {
-        return ServiceLoader.load(BulletSPI.class).stream().map(ServiceLoader.Provider::get).collect(toList());
-    }
-
     @Override
     public Weapon createWeapon(Entity owner) {
         return new Weapon(owner);

@@ -28,11 +28,4 @@ public class Main extends Application {
         game.render();
 
     }
-
-    private <T> List<T> loadServices(Class<T> serviceInterface) {
-        return ServiceLoader.load(serviceInterface)
-                .stream()
-                .map(ServiceLoader.Provider::get)
-                .toList();
-    }
 }

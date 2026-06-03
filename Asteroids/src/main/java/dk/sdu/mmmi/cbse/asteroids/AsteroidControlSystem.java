@@ -11,11 +11,10 @@ import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 
 public class AsteroidControlSystem implements IEntityProcessingService{
 
-    private IAsteroidSplitter asteroidSplitter = new AsteroidSplitter();
+    private final IAsteroidSplitter asteroidSplitter = new AsteroidSplitter();
 
-    // Static because spawn rate is the same for all asteroids.
-    private static double spawnRate = 5;
-    private static double spawnTimer = 0.0;
+    private double spawnTimer = 0.0;
+    private static final double spawnRate = 5;
 
     @Override
     public void process(GameData gameData, World world) {
@@ -23,16 +22,15 @@ public class AsteroidControlSystem implements IEntityProcessingService{
         spawnTimer += gameData.getDeltaTime();
 
         if (spawnTimer >= spawnRate) {
-            // This takes excess milliseconds into account.
             spawnTimer -= spawnRate;
 
-            world.addEntity(new AsteroidPlugin().createAsteroid(gameData));
+            world.addEntity(AsteroidPlugin.createAsteroid(gameData));
         }
 
         for (Entity asteroid : world.getEntities(Asteroid.class)) {
 
 
-            // Remove if dead.
+
             if (asteroid.getHealth() <= 0) {
                 world.removeEntity(asteroid);
                 continue;
@@ -40,8 +38,6 @@ public class AsteroidControlSystem implements IEntityProcessingService{
 
             if (asteroidSplitter != null) {
                 if (((Asteroid) asteroid).isHit()) {
-                    System.out.println("Asteroid hit.");
-                    System.out.println("Trying to split.");
                     asteroidSplitter.createSplitAsteroid(asteroid, world);
                     ((Asteroid) asteroid).setHit(false);
                 }
